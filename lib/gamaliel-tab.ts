@@ -10,7 +10,7 @@ export const ON_GAMALIEL_ENCOURAGEMENTS = [
   'Good. Keep reading.',
   "You're in Scripture. That's the point.",
   "Congratulations — you're in the Word.",
-  'This is better than scrolling.',
+  'This is better than doomscrolling.',
   'Linger here.',
   'Let the text speak.',
   'Take your time.',
@@ -43,14 +43,19 @@ export function encouragementForLoad(loadIndex: number): string {
 
 /** Advance only when the reader URL changes to a new passage. */
 export function nextEncouragementCycle(
-  prev: EncouragementCycle,
+  prev: EncouragementCycle | null,
   url: string | undefined,
-): EncouragementCycle {
+  random: () => number = Math.random,
+): EncouragementCycle | null {
   if (!isGamalielPageUrl(url) || !url) return prev;
-  if (url === prev.lastPassageUrl) return prev;
-  if (prev.lastPassageUrl === undefined) {
-    return { index: prev.index, lastPassageUrl: url };
+  if (prev === null) {
+    const n = ON_GAMALIEL_ENCOURAGEMENTS.length;
+    return {
+      index: Math.floor(random() * n),
+      lastPassageUrl: url,
+    };
   }
+  if (url === prev.lastPassageUrl) return prev;
   return { index: prev.index + 1, lastPassageUrl: url };
 }
 

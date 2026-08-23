@@ -43,9 +43,9 @@ export default function App() {
   const [busy, setBusy] = useState(false);
   const [question, setQuestion] = useState(DEFAULT_QUESTION);
   const [onGamaliel, setOnGamaliel] = useState(false);
-  const [encouragement, setEncouragement] = useState<EncouragementCycle>({
-    index: 0,
-  });
+  const [encouragement, setEncouragement] = useState<EncouragementCycle | null>(
+    null,
+  );
 
   useEffect(() => {
     let cancelled = false;
@@ -138,7 +138,11 @@ export default function App() {
       ) : (
         <>
           {onGamaliel ? (
-            <p className="hint">{encouragementForLoad(encouragement.index)}</p>
+            <p className="hint">
+              {encouragement
+                ? encouragementForLoad(encouragement.index)
+                : null}
+            </p>
           ) : (
             <>
               <label className="question-field">

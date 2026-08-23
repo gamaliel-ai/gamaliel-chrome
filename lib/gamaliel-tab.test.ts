@@ -32,13 +32,14 @@ describe('encouragements', () => {
     expect(encouragementForLoad(21)).toBe(ON_GAMALIEL_ENCOURAGEMENTS[1]);
   });
 
-  it('keeps the first phrase on the first passage, then cycles on a new URL', () => {
+  it('picks a random index from null, then cycles on a new URL', () => {
     const first = nextEncouragementCycle(
-      { index: 0 },
+      null,
       'https://gamaliel.ai/read/MAT/5',
+      () => 0.35,
     );
     expect(first).toEqual({
-      index: 0,
+      index: 7,
       lastPassageUrl: 'https://gamaliel.ai/read/MAT/5',
     });
 
@@ -49,8 +50,12 @@ describe('encouragements', () => {
       first,
       'https://gamaliel.ai/read/JHN/3',
     );
-    expect(next.index).toBe(1);
-    expect(next.lastPassageUrl).toBe('https://gamaliel.ai/read/JHN/3');
+    expect(next?.index).toBe(8);
+    expect(next?.lastPassageUrl).toBe('https://gamaliel.ai/read/JHN/3');
+  });
+
+  it('stays null off a Gamaliel tab when we have not started', () => {
+    expect(nextEncouragementCycle(null, 'https://x.com/foo')).toBeNull();
   });
 
   it('does not advance off a non-Gamaliel tab', () => {
