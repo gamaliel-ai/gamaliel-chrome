@@ -2,9 +2,9 @@
 
 Chrome extension (Manifest V3) that suggests Scripture for the post or text in front of you — an exit ramp from social media toward a renewed mind in Christ. Safari support may come later from the same WXT project.
 
-Product concept lives in [`gamaliel-web`](https://github.com/gamaliel-ai/gamaliel-web): `docs/social-to-scripture-product-concept.md`.
+Vision for this extension: [docs/VISION.md](docs/VISION.md). Engineering tickets: [docs/BACKLOG.md](docs/BACKLOG.md) (`G-NNNN`; conventions in [docs/README.md](docs/README.md)). Broader product (including iOS share) is in [`gamaliel-web`](https://github.com/gamaliel-ai/gamaliel-web): `docs/social-to-scripture-product-concept.md`.
 
-Future GitHub remote: `git@github.com:gamaliel-ai/gamaliel-chrome.git` (private). Do not push until the repo is ready.
+Remote: `git@github.com:gamaliel-ai/gamaliel-chrome.git` (private).
 
 ## Requirements
 
@@ -16,6 +16,7 @@ cd /Users/cirne/dev/gamaliel-chrome
 nvm use          # reads .nvmrc → 22
 node -v          # v22.x
 npm install
+cp .env.example .env   # set WXT_GAMALIEL_API_KEY
 ```
 
 If `node` / `npx` are missing from PATH, load nvm first:
@@ -30,13 +31,16 @@ nvm use
 
 | Command | What it does |
 | --- | --- |
-| `nvm use && npm run dev` | WXT dev (load unpacked from `.output/chrome-mv3`) |
+| `nvm use && npm run dev` | WXT dev (load unpacked from `dist/chrome-mv3`) |
 | `nvm use && npm run build` | Production Chrome build |
 | `nvm use && npm run zip` | Zip for Chrome Web Store |
 | `nvm use && npm run compile` | `tsc --noEmit` |
+| `nvm use && npm test` | Unit tests (vitest) |
+
+Load unpacked from `dist/chrome-mv3` after `npm run build` (or `npm run dev`). Toolbar icon opens the side panel. Ask Gamaliel streams `POST /v1/chat/completions`.
 
 Firefox scripts are leftover WXT defaults; Chrome is the target.
 
 ## Stack
 
-WXT · React · TypeScript · Node 22. Talks to the Gamaliel public API (`/v1/scripture/search` first).
+WXT · React · TypeScript · Node 22. Talks to the Gamaliel public API (`POST /v1/chat/completions` for the Hello World side panel).

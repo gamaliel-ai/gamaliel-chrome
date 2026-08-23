@@ -11,6 +11,7 @@ lerna-debug.log*
 node_modules/
 
 # WXT / extension build
+dist/
 .output/
 .wxt/
 stats.html
@@ -20,6 +21,7 @@ web-ext-artifacts/
 
 # Testing
 coverage/
+.test-attempts/
 
 # Environment / secrets
 .env
