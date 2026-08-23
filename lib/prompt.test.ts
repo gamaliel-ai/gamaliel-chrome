@@ -1,6 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import { snapshotFromPage } from './capture.ts';
-import { SYSTEM_PROMPT, buildChatMessages, buildUserPrompt } from './prompt.ts';
+import {
+  DEFAULT_QUESTION,
+  SYSTEM_PROMPT,
+  buildChatMessages,
+  buildUserPrompt,
+} from './prompt.ts';
 
 const base = snapshotFromPage({
   url: 'https://x.com/someone/status/1',
@@ -16,8 +21,7 @@ describe('buildUserPrompt', () => {
     expect(prompt).toContain('Here is what I am looking at right now.');
     expect(prompt).toContain('A heated thread');
     expect(prompt).toContain('Everyone is furious about the news.');
-    expect(prompt).toContain('Help me think biblically');
-    expect(prompt).toContain('not verses you would suggest for any webpage');
+    expect(prompt).toContain(DEFAULT_QUESTION);
     expect(prompt).not.toContain('I selected this text:');
   });
 
@@ -25,6 +29,12 @@ describe('buildUserPrompt', () => {
     const prompt = buildUserPrompt({ ...base, selection: 'bless those who curse you' });
     expect(prompt).toContain('I selected this text:');
     expect(prompt).toContain('"bless those who curse you"');
+  });
+
+  it('uses a custom question when provided', () => {
+    const prompt = buildUserPrompt(base, 'What should I pray right now?');
+    expect(prompt).toContain('What should I pray right now?');
+    expect(prompt).not.toContain(DEFAULT_QUESTION);
   });
 });
 

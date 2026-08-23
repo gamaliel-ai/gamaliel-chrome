@@ -16,7 +16,18 @@ How to choose passages (this is the main job):
 
 Answer in markdown. Cite specific, varied references. The API will turn them into reader links — write normal references such as Matthew 5:1-12. For each passage, one sentence on why it fits what they are seeing.`;
 
-export function buildUserPrompt(snapshot: PageSnapshot): string {
+export const DEFAULT_QUESTION =
+  'What biblical truths can best explain what I am seeing here? What does the Bible say I should do in response?';
+
+export function resolveQuestion(question: string | undefined): string {
+  const trimmed = question?.trim();
+  return trimmed || DEFAULT_QUESTION;
+}
+
+export function buildUserPrompt(
+  snapshot: PageSnapshot,
+  question: string = DEFAULT_QUESTION,
+): string {
   const site = snapshot.hostname
     ? guessSiteName(snapshot.hostname)
     : 'a web page';
@@ -53,19 +64,20 @@ export function buildUserPrompt(snapshot: PageSnapshot): string {
     parts.push('');
   }
 
-  parts.push(
-    'Help me think biblically about what I am seeing — especially any text I selected. What biblical truths best explain *this* content, not a generic feed? What does the Bible say I should do in response to *these* particulars? Point me to the most relevant Scripture for this circumstance, not verses you would suggest for any webpage.',
-  );
+  parts.push(resolveQuestion(question));
 
   return parts.join('\n');
 }
 
-export function buildChatMessages(snapshot: PageSnapshot): {
+export function buildChatMessages(
+  snapshot: PageSnapshot,
+  question: string = DEFAULT_QUESTION,
+): {
   role: 'system' | 'user';
   content: string;
 }[] {
   return [
     { role: 'system', content: SYSTEM_PROMPT },
-    { role: 'user', content: buildUserPrompt(snapshot) },
+    { role: 'user', content: buildUserPrompt(snapshot, question) },
   ];
 }

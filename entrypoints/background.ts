@@ -1,6 +1,8 @@
 import { snapshotFromPage, type PageSnapshot } from '@/lib/capture.ts';
 import { streamGamalielAnswer } from '@/lib/chat.ts';
+import { isGamalielPageUrl, ON_GAMALIEL_PAGE_HINT } from '@/lib/gamaliel-tab.ts';
 import type { BackgroundToPanel, CaptureResponse, PanelToBackground } from '@/lib/messages.ts';
+import { loadPreferences } from '@/lib/preferences.ts';
 import { buildChatMessages } from '@/lib/prompt.ts';
 
 function apiKey(): string {
@@ -51,11 +53,27 @@ export default defineBackground(() => {
       }
 
       try {
+        const [tab] = await browser.tabs.query({
+          active: true,
+          currentWindow: true,
+        });
+        if (isGamalielPageUrl(tab?.url)) {
+          const error: BackgroundToPanel = {
+            type: 'error',
+            message: ON_GAMALIEL_PAGE_HINT,
+          };
+          port.postMessage(error);
+          return;
+        }
+
         const snapshot = await captureActiveTab();
-        const messages = buildChatMessages(snapshot);
+        const prefs = await loadPreferences();
+        const messages = buildChatMessages(snapshot, prefs.question);
         await streamGamalielAnswer({
           apiKey: key,
           messages,
+          theology: prefs.theologySlug,
+          profile: prefs.profileSlug,
           onDelta: (text) => {
             const delta: BackgroundToPanel = { type: 'delta', text };
             port.postMessage(delta);

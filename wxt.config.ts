@@ -25,7 +25,7 @@ export default defineConfig({
         128: 'icon-128.png',
       },
     },
-    permissions: ['sidePanel', 'tabs'],
+    permissions: ['sidePanel', 'storage', 'tabs'],
     host_permissions: [
       'https://api.gamaliel.ai/*',
       'https://*/*',
