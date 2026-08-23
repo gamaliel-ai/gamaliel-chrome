@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import Markdown from 'react-markdown';
 import type { BackgroundToPanel } from '@/lib/messages.ts';
+import { GAMALIEL_TAB_NAME } from '@/lib/gamaliel-tab.ts';
+import { openInSharedGamalielTab } from '@/lib/open-gamaliel-tab.ts';
 import { absolutizeGamalielLinks, toGamalielHref } from '@/lib/scripture-links.ts';
 
 function askGamaliel(onMessage: (msg: BackgroundToPanel) => void): void {
@@ -55,7 +57,24 @@ export default function App() {
               a({ href, children }) {
                 const url = toGamalielHref(href ?? '');
                 return (
-                  <a href={url} target="_blank" rel="noreferrer">
+                  <a
+                    href={url}
+                    target={GAMALIEL_TAB_NAME}
+                    rel="noreferrer"
+                    onClick={(event) => {
+                      if (
+                        event.metaKey ||
+                        event.ctrlKey ||
+                        event.shiftKey ||
+                        event.altKey ||
+                        event.button !== 0
+                      ) {
+                        return;
+                      }
+                      event.preventDefault();
+                      void openInSharedGamalielTab(url);
+                    }}
+                  >
                     {children}
                   </a>
                 );

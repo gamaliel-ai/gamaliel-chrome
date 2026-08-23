@@ -17,6 +17,7 @@ describe('buildUserPrompt', () => {
     expect(prompt).toContain('A heated thread');
     expect(prompt).toContain('Everyone is furious about the news.');
     expect(prompt).toContain('Help me think biblically');
+    expect(prompt).toContain('not verses you would suggest for any webpage');
     expect(prompt).not.toContain('I selected this text:');
   });
 

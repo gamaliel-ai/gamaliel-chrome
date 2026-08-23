@@ -1,18 +1,14 @@
-const HOST_LABELS: Record<string, string> = {
-  'x.com': 'Twitter (X)',
-  'twitter.com': 'Twitter (X)',
-  'instagram.com': 'Instagram',
-  'www.instagram.com': 'Instagram',
-  'facebook.com': 'Facebook',
-  'www.facebook.com': 'Facebook',
-  'reddit.com': 'Reddit',
-  'www.reddit.com': 'Reddit',
-  'youtube.com': 'YouTube',
-  'www.youtube.com': 'YouTube',
-  'news.ycombinator.com': 'Hacker News',
-};
+const SITE_PATTERNS: { test: RegExp; name: string }[] = [
+  { test: /(^|\.)(x|twitter)\.com$/i, name: 'Twitter (X)' },
+  { test: /(^|\.)(bsky\.app|bsky\.social)$/i, name: 'Bluesky' },
+  { test: /(^|\.)instagram\.com$/i, name: 'Instagram' },
+  { test: /(^|\.)facebook\.com$/i, name: 'Facebook' },
+  { test: /(^|\.)reddit\.com$/i, name: 'Reddit' },
+  { test: /(^|\.)(youtube\.com|youtu\.be)$/i, name: 'YouTube' },
+  { test: /(^|\.)news\.ycombinator\.com$/i, name: 'Hacker News' },
+];
 
 export function guessSiteName(hostname: string): string {
-  const host = hostname.replace(/^www\./, '').toLowerCase();
-  return HOST_LABELS[hostname.toLowerCase()] ?? HOST_LABELS[host] ?? hostname;
+  const host = hostname.toLowerCase();
+  return SITE_PATTERNS.find(({ test }) => test.test(host))?.name ?? hostname;
 }
