@@ -27,7 +27,7 @@ The **more likely** first reject is technical: broad host permissions, unused AP
 
 ## Depends on
 
-- Run this checklist as part of [G-0005](G-0005-chrome-web-store-and-site-cta.md) submit. Does not block G-0001 dogfood.
+- Run this checklist as part of [G-0005](G-0005-chrome-web-store-and-site-cta.md) submit (procedure: [`../chrome-web-store.md`](../chrome-web-store.md) step 2). Does not block G-0001 dogfood.
 - Prompt/API quality lives mainly in gamaliel-web; this ticket owns **what we ship in the zip and listing** and a **pre-submit answer eval**.
 
 ## Direction
@@ -69,6 +69,7 @@ Coordinated reports can still happen. Appeal path is the CWS developer email. Do
 
 ## Links
 
+- [`../chrome-web-store.md`](../chrome-web-store.md) — publish sequence (this checklist is step 2)
 - [G-0005](G-0005-chrome-web-store-and-site-cta.md) — publish + handshake
 - [VISION.md](../VISION.md) — exit ramp; not condemnation of the post’s author
 - [CWS hate speech](https://developer.chrome.com/docs/webstore/program-policies/hate-and-violence)

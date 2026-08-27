@@ -29,7 +29,7 @@ Engineering work catalog — **tickets** (`G-NNNN`). Rules: [`README.md`](README
 
 #### [G-0005](backlog/G-0005-chrome-web-store-and-site-cta.md): Publish on the Chrome Web Store and enable the site install CTA
 
-**Deferred.** Store listing (unlisted → public) + install handshake for gamaliel.ai. Homepage button: [gamaliel-web#229](https://github.com/gamaliel-ai/gamaliel-web/issues/229). Blocked on a releasable zip ([G-0002](backlog/G-0002-hosted-api-no-client-key.md)).
+**Deferred.** Store listing (unlisted → public) + install handshake for gamaliel.ai. Procedure: [`chrome-web-store.md`](chrome-web-store.md). Homepage button: [gamaliel-web#229](https://github.com/gamaliel-ai/gamaliel-web/issues/229). Blocked on a releasable zip ([G-0002](backlog/G-0002-hosted-api-no-client-key.md)).
 
 #### [G-0006](backlog/G-0006-cws-review-risk.md): Minimize Chrome Web Store rejection and takedown risk
 

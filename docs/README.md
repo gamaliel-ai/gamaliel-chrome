@@ -19,6 +19,7 @@ focus.md                         # root — priorities, WIP/stuck, recently ship
 docs/
   README.md                      # THIS FILE — org SoT
   VISION.md                      # product cut for the extension
+  chrome-web-store.md            # how to publish (procedure; tickets stay G-NNNN)
   BACKLOG.md                     # thin open catalog + NEXT_ID
   backlog/
     G-NNNN-slug.md               # active
@@ -89,3 +90,4 @@ Open work must appear in Active/Deferred. Lifetime history = archive files + git
 - [`../README.md`](../README.md) — setup and commands
 - [`../focus.md`](../focus.md) — current priorities
 - [`VISION.md`](VISION.md) — extension product cut
+- [`chrome-web-store.md`](chrome-web-store.md) — Chrome Web Store publish sequence ([G-0005](backlog/G-0005-chrome-web-store-and-site-cta.md))

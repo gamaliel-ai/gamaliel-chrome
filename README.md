@@ -33,7 +33,7 @@ nvm use
 | --- | --- |
 | `nvm use && npm run dev` | WXT dev (load unpacked from `dist/chrome-mv3`) |
 | `nvm use && npm run build` | Production Chrome build |
-| `nvm use && npm run zip` | Zip for Chrome Web Store |
+| `nvm use && npm run zip` | Zip for Chrome Web Store ([docs/chrome-web-store.md](docs/chrome-web-store.md)) |
 | `nvm use && npm run compile` | `tsc --noEmit` |
 | `nvm use && npm test` | Unit tests (vitest) |
 

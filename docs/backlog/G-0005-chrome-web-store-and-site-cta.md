@@ -33,6 +33,8 @@ This ticket is the **chrome-repo** cut: package, listing, review, handshake. The
 
 ## Direction
 
+Publish **sequence** (procedure, not a second tracker): [`../chrome-web-store.md`](../chrome-web-store.md).
+
 ### Store (this repo + Google)
 
 - One-time Chrome Web Store developer registration.
@@ -72,6 +74,7 @@ Short panel hint: pin the toolbar icon, go to a social tab, Ask. Many people ret
 
 ## Links
 
+- [`../chrome-web-store.md`](../chrome-web-store.md) — publish sequence
 - [G-0002](G-0002-hosted-api-no-client-key.md) — ship blocker
 - [G-0006](G-0006-cws-review-risk.md) — rejection-risk checklist
 - [VISION.md](../VISION.md) — Chrome first; not an iOS extension
