@@ -9,7 +9,7 @@
 
 | Decision | Choice |
 | -------- | ------ |
-| Auth | Build-time `WXT_GAMALIEL_API_KEY` in `.env`. Securing the key is [G-0002](G-0002-hosted-api-no-client-key.md). |
+| Auth | Hosted `POST /v1/chat/completions` (no client key). See [G-0002](G-0002-hosted-api-no-client-key.md). |
 | API | `POST https://api.gamaliel.ai/v1/chat/completions` via official `openai` SDK (`stream: true`). Background SW makes the call (key not in the page). |
 | Scripture hrefs | API emits `/read/MAT/5?verse=…`; rewrite to `https://gamaliel.ai/read/…`, open in a new tab. |
 | Toolbar | No popup. `sidePanel.setPanelBehavior({ openPanelOnActionClick: true })`. |

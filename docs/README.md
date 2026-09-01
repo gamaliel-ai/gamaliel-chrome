@@ -90,4 +90,5 @@ Open work must appear in Active/Deferred. Lifetime history = archive files + git
 - [`../README.md`](../README.md) — setup and commands
 - [`../focus.md`](../focus.md) — current priorities
 - [`VISION.md`](VISION.md) — extension product cut
-- [`chrome-web-store.md`](chrome-web-store.md) — Chrome Web Store publish sequence ([G-0005](backlog/G-0005-chrome-web-store-and-site-cta.md))
+- [`chrome-web-store.md`](chrome-web-store.md) — Chrome Web Store publish sequence ([G-0005](backlog/G-0005-chrome-web-store-and-site-cta.md)); site CTA is [G-0007](backlog/G-0007-site-install-cta-and-handshake.md)
+- [`publisher-store-accounts.md`](publisher-store-accounts.md) — org Chrome + iOS publisher identity (Matt Shandra); trader vs hobbyist

@@ -2,16 +2,19 @@
 
 ## Current focus
 
-- [G-0001](docs/backlog/G-0001-hello-world.md) — Hello World: side panel, capture page + selection, stream a Gamaliel chat answer as markdown.
+- [G-0005](docs/backlog/G-0005-chrome-web-store-and-site-cta.md) — Chrome Web Store package/publish. **Stuck** on org publisher account.
 
 ## Up next (blocked)
 
-- [G-0002](docs/backlog/G-0002-hosted-api-no-client-key.md) — drop baked API key. Blocked on [gamaliel-web#227](https://github.com/gamaliel-ai/gamaliel-web/issues/227). Preflight intent vs page text: [web#228](https://github.com/gamaliel-ai/gamaliel-web/issues/228).
+- [G-0001](docs/backlog/G-0001-hello-world.md) / [G-0002](docs/backlog/G-0002-hosted-api-no-client-key.md) — dogfood hosted Ask; archive when soaked.
+- [web#228](https://github.com/gamaliel-ai/gamaliel-web/issues/228) — preflight vs page text (zip shippable for review).
+- [G-0007](docs/backlog/G-0007-site-install-cta-and-handshake.md) — homepage advertise after a store URL.
 
 ## WIP / stuck
 
-- G-0001 implemented locally (tests + `npm run build`). Load `dist/chrome-mv3` with `WXT_GAMALIEL_API_KEY` in `.env`. Not archived until dogfood.
+- **CWS trader / org account** — [docs/publisher-store-accounts.md](docs/publisher-store-accounts.md). Matt Shandra sets up the Foundation Chrome Web Store (and the same org pattern for iOS). Do not submit as non-trader or under a personal Google ID.
 
 ## Recently shipped
 
-*(empty)*
+- G-0002 client: hosted chat, no baked API key (dogfood confirmed).
+- G-0006 CWS rejection-risk checklist.

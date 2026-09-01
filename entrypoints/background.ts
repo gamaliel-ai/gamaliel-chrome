@@ -5,10 +5,6 @@ import type { BackgroundToPanel, CaptureResponse, PanelToBackground } from '@/li
 import { loadPreferences } from '@/lib/preferences.ts';
 import { buildChatMessages } from '@/lib/prompt.ts';
 
-function apiKey(): string {
-  return import.meta.env.WXT_GAMALIEL_API_KEY ?? '';
-}
-
 async function captureActiveTab(): Promise<PageSnapshot> {
   const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
   if (!tab?.id) {
@@ -41,17 +37,6 @@ export default defineBackground(() => {
     port.onMessage.addListener(async (message: PanelToBackground) => {
       if (message.type !== 'ask') return;
 
-      const key = apiKey();
-      if (!key) {
-        const error: BackgroundToPanel = {
-          type: 'error',
-          message:
-            'Missing WXT_GAMALIEL_API_KEY. Add it to .env and rebuild the extension.',
-        };
-        port.postMessage(error);
-        return;
-      }
-
       try {
         const [tab] = await browser.tabs.query({
           active: true,
@@ -70,7 +55,6 @@ export default defineBackground(() => {
         const prefs = await loadPreferences();
         const messages = buildChatMessages(snapshot, prefs.question);
         await streamGamalielAnswer({
-          apiKey: key,
           messages,
           theology: prefs.theologySlug,
           profile: prefs.profileSlug,

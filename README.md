@@ -4,7 +4,7 @@ Chrome extension (Manifest V3) that suggests Scripture for the post or text in f
 
 Vision for this extension: [docs/VISION.md](docs/VISION.md). Engineering tickets: [docs/BACKLOG.md](docs/BACKLOG.md) (`G-NNNN`; conventions in [docs/README.md](docs/README.md)). Broader product (including iOS share) is in [`gamaliel-web`](https://github.com/gamaliel-ai/gamaliel-web): `docs/social-to-scripture-product-concept.md`.
 
-Remote: `git@github.com:gamaliel-ai/gamaliel-chrome.git` (private).
+Remote: `git@github.com:gamaliel-ai/gamaliel-chrome.git`.
 
 ## Requirements
 
@@ -16,7 +16,6 @@ cd /Users/cirne/dev/gamaliel-chrome
 nvm use          # reads .nvmrc → 22
 node -v          # v22.x
 npm install
-cp .env.example .env   # set WXT_GAMALIEL_API_KEY
 ```
 
 If `node` / `npx` are missing from PATH, load nvm first:

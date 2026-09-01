@@ -1,6 +1,6 @@
 # G-0002: Call the public API with no client API key
 
-**Status:** Blocked on gamaliel-web hosted mode  
+**Status:** In progress — client key removed; dogfood hosted Ask  
 **Type:** improvement  
 **Priority:** P1 — required before ship  
 **Created:** 2026-08-23

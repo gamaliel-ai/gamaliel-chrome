@@ -1,8 +1,8 @@
 # Publish on the Chrome Web Store
 
-Step-by-step for the first listing and later version bumps. Locked product choices live in [G-0005](backlog/G-0005-chrome-web-store-and-site-cta.md) and [G-0006](backlog/G-0006-cws-review-risk.md) — this file is the procedure, not a second tracker.
+Step-by-step for the first listing and later version bumps. Locked product choices live in [G-0005](backlog/G-0005-chrome-web-store-and-site-cta.md) and [G-0006](backlog/archive/G-0006-cws-review-risk.md) — this file is the procedure, not a second tracker.
 
-**v1 distribution:** Chrome Web Store only. No sideload page, no `.crx` download, no inline install. Firefox / Edge stores are [will not do](BACKLOG.md). Distribution after approval is the [gamaliel.ai](https://gamaliel.ai) homepage CTA ([gamaliel-web#229](https://github.com/gamaliel-ai/gamaliel-web/issues/229)), not Chrome Web Store featuring ([VISION.md](VISION.md): Chrome first; Chrome on iOS does not run extensions).
+**v1 distribution:** Chrome Web Store only. No sideload page, no `.crx` download, no inline install. Firefox / Edge stores are [will not do](BACKLOG.md). Homepage install CTA is [G-0007](backlog/G-0007-site-install-cta-and-handshake.md) / [gamaliel-web#229](https://github.com/gamaliel-ai/gamaliel-web/issues/229), not Chrome Web Store featuring ([VISION.md](VISION.md): Chrome first; Chrome on iOS does not run extensions).
 
 Google’s own overview: [Publish in the Chrome Web Store](https://developer.chrome.com/docs/webstore/publish). Review: [CWS review process](https://developer.chrome.com/docs/webstore/review-process).
 
@@ -15,14 +15,14 @@ Do these in order. Listing copy and the privacy URL can be drafted in parallel w
 | Step | Where | Done when |
 | ---- | ----- | --------- |
 | 1 | This repo + `gamaliel-web` | Production-shaped zip has **no** client API key |
-| 2 | This repo | [G-0006](backlog/G-0006-cws-review-risk.md) checklist complete on the build you will upload |
+| 2 | This repo | [G-0006](backlog/archive/G-0006-cws-review-risk.md) checklist complete on the build you will upload |
 | 3 | `gamaliel-web` | Privacy policy live and accurate for the extension |
 | 4 | Google | Developer account registered |
 | 5 | This repo + design | Listing assets ready |
 | 6 | This repo | `npm run zip` |
 | 7 | CWS dashboard | Item created, **unlisted**, package + listing filled |
 | 8 | CWS dashboard | Submitted; item ID / URL stable |
-| 9 | This repo + `gamaliel-web` | Install handshake + homepage CTA against that URL |
+| 9 | This repo + `gamaliel-web` | **[G-0007](backlog/G-0007-site-install-cta-and-handshake.md)** — handshake + homepage CTA (not G-0005) |
 | 10 | CWS dashboard | Flip **public** when the site href is ready (same item, not a new ID) |
 
 After first approval, skip to [Later releases](#later-releases).
@@ -43,7 +43,7 @@ Dogfood of the panel ([G-0001](backlog/G-0001-hello-world.md)) should already ha
 
 ### 2. Run the rejection-risk checklist
 
-Complete [G-0006](backlog/G-0006-cws-review-risk.md) on **this** build. Attach notes to the G-0005 submission (dashboard “what’s new” or an internal note — do not invent a second tracker).
+Complete [G-0006](backlog/archive/G-0006-cws-review-risk.md) on **this** build. Attach notes to the G-0005 submission (dashboard “what’s new” or an internal note — do not invent a second tracker).
 
 In short:
 
@@ -68,10 +68,16 @@ Before submit, that page must cover the extension (G-0005 / G-0006): page or sel
 
 ---
 
-### 4. One-time Chrome Web Store developer registration
+### 4. Chrome Web Store developer account (**sticking point**)
 
-1. Sign in with the Google account that will own the listing: [Chrome Web Store Developer Dashboard](https://chrome.google.com/webstore/devconsole).
-2. Pay the one-time registration fee.
+**Do not** complete this step on a personal Google account. Org identity, trader declaration, and verification: **[publisher-store-accounts.md](publisher-store-accounts.md)** — **Matt Shandra**. Same pattern as iOS (organization Apple Developer, not an individual).
+
+Nonprofit / charity still select **This is a trader account**. “Trader” means professional/organizational publisher, not “for-profit.” Policy: [Trader/Non-Trader](https://developer.chrome.com/docs/webstore/program-policies/trader-disclosure).
+
+Once the org dashboard exists and engineers have access:
+
+1. Sign in as the **Foundation** publisher: [Chrome Web Store Developer Dashboard](https://chrome.google.com/webstore/devconsole).
+2. Confirm trader verification is complete for that account.
 3. The GitHub repo can stay private. Reviewers only see the zip and listing fields.
 
 ---
@@ -124,13 +130,13 @@ Submit for review. Timeline is days, sometimes longer.
 
 If rejected, the dashboard mail usually cites permissions, privacy URL, or single-purpose mismatch — the technical path in G-0006, not “this app contains Romans.” Fix, bump version, `npm run zip`, resubmit.
 
-When **unlisted** is approved, the URL works for anyone who has the link. That URL is what the homepage CTA should use. Record it on [G-0005](backlog/G-0005-chrome-web-store-and-site-cta.md) / [gamaliel-web#229](https://github.com/gamaliel-ai/gamaliel-web/issues/229).
+When **unlisted** is approved, the URL works for anyone who has the link. Record it on [G-0005](backlog/G-0005-chrome-web-store-and-site-cta.md) and [G-0007](backlog/G-0007-site-install-cta-and-handshake.md) / [gamaliel-web#229](https://github.com/gamaliel-ai/gamaliel-web/issues/229).
 
 ---
 
 ### 9. Site CTA and install handshake
 
-Chrome-repo cut is still G-0005. Website cut is [gamaliel-web#229](https://github.com/gamaliel-ai/gamaliel-web/issues/229).
+This step is **[G-0007](backlog/G-0007-site-install-cta-and-handshake.md)**, not G-0005. Website cut is [gamaliel-web#229](https://github.com/gamaliel-ai/gamaliel-web/issues/229).
 
 - **CTA:** Reuse the existing homepage CTA *section*. Button opens the **store listing in a new tab**. Show on **desktop Chrome** (maybe Chromium Edge — decide on the web ticket). Hide on mobile, iOS, Safari, Firefox. Analog: [`../gamaliel-web/client/src/components/shared/IOSSafariAppStoreBanner.tsx`](../../gamaliel-web/client/src/components/shared/IOSSafariAppStoreBanner.tsx) (store hop + dismiss).
 - **Already installed:** Hide or swap the CTA. The page cannot see the extension unless this repo exposes a signal on `gamaliel.ai` / `www.gamaliel.ai` (`externally_connectable` + `runtime` ping, **or** a tiny content script). Same host cut as [G-0003](backlog/archive/G-0003-disable-ask-on-gamaliel.md) (panel hides Ask *on* Gamaliel; site hides install *when* the extension is there).
@@ -168,8 +174,10 @@ Same as G-0005 / BACKLOG will-not-do: Safari / Firefox packaging, Edge Add-ons, 
 
 | This repo | |
 | --------- | - |
-| [G-0005](backlog/G-0005-chrome-web-store-and-site-cta.md) | Ticket: listing + handshake |
-| [G-0006](backlog/G-0006-cws-review-risk.md) | Pre-submit checklist |
+| [G-0005](backlog/G-0005-chrome-web-store-and-site-cta.md) | Ticket: zip + listing |
+| [publisher-store-accounts.md](publisher-store-accounts.md) | Org CWS + iOS publisher identity (Matt Shandra) |
+| [G-0007](backlog/G-0007-site-install-cta-and-handshake.md) | Homepage CTA + handshake |
+| [G-0006](backlog/archive/G-0006-cws-review-risk.md) | Pre-submit checklist |
 | [G-0002](backlog/G-0002-hosted-api-no-client-key.md) | No client key in the zip |
 | [G-0001](backlog/G-0001-hello-world.md) | Working panel for screenshots |
 | [G-0003](backlog/archive/G-0003-disable-ask-on-gamaliel.md) | Inverse of site handshake hosts |
